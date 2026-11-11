@@ -9,12 +9,11 @@ on:
 env:
   PACKAGE_NAME: luci-app-xray
   CACHE_DIR: ~/cache
-  FORCE: 1
 
 jobs:
   release:
     name: Build for ${{ matrix.arch }} (${{ matrix.id }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -103,8 +102,8 @@ jobs:
       - name: Build Packages
         run: |
           cd "$SDK_HOME"
-          make defconfig FORCE=1
-          make package/${PACKAGE_NAME}/status/{clean,compile} V=s FORCE=1
+          make defconfig
+          make package/${PACKAGE_NAME}/status/{clean,compile} V=s 
           find "$SDK_HOME/bin/" -type f \( -name "*.ipk" -o -name "*.apk" \) -exec ls -lh {} \;
           cd -
       - name: Copy Bin Files
