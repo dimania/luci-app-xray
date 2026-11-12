@@ -117,8 +117,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            *.ipk
-            *.apk
+            *.ipk            
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
